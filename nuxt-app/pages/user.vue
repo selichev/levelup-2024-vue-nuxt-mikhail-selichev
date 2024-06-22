@@ -1,7 +1,6 @@
 <script setup lang="ts">
+const route = useRoute();
 </script>
 <template>
-<div>
-  <slot />
-</div>
+  <div>{{route.name}}</div>
 </template>
