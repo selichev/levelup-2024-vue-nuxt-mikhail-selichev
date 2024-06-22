@@ -3,5 +3,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   telemetry: false,
   ssr: false,
-  modules: ["@nuxtjs/tailwindcss"]
-})
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/fonts"],
+  // fonts: {
+  //   families: [
+  //     {name: 'Lato', provider: 'google'},
+  //   ],
+  // }
+});
