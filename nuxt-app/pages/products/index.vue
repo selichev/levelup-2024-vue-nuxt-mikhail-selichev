@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import DataKeys from "~/constants/DataKeys";
-const { data } = useNuxtData(DataKeys.PRODUCTS);
+const { list } = useProducts();
 </script>
 <template>
   <div class="grid  grid-cols-3 gap-2
   place-items-start
   place-content-start">
-    <div v-for="product in data.products" :key="product.id" class="h-full w-full">
+    <div v-for="product in list" :key="product.id" class="h-full w-full">
       <div class="card w-72 bg-base-100 image-full shadow-xl h-full w-full">
         <figure>
           <img
