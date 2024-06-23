@@ -1,7 +1,26 @@
 <script setup lang="ts">
 import DataKeys from "~/constants/DataKeys";
-const data = useNuxtData(DataKeys.PRODUCTS);
+const { data } = useNuxtData(DataKeys.PRODUCTS);
 </script>
 <template>
-  <div>{{data}}</div>
+  <div class="grid  grid-cols-3 gap-2
+  place-items-start
+  place-content-start">
+    <div v-for="product in data.products" :key="product.id" class="h-full w-full">
+      <div class="card w-72 bg-base-100 image-full shadow-xl h-full w-full">
+        <figure>
+          <img
+              :src="product.thumbnail"
+              alt="Shoes" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">{{ product.title }}</h2>
+          <p>{{ product.description }}</p>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
