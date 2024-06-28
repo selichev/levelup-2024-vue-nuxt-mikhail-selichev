@@ -1,9 +1,12 @@
 <script setup lang="ts">
 
 const products = useProducts();
+const uid = useCookie<number>('uid');
 
-const { pending } = products.retrieve(10);
-
+uid.value = 123;
+const isLoading = ref(true);
+const { pending } = products.retrieve(10, true);
+console.log('> app -> setup: refresh')
 </script>
 <template>
   <Spinner v-if="pending"/>

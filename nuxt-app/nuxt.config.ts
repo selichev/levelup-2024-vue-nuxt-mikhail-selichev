@@ -9,5 +9,9 @@ export default defineNuxtConfig({
   telemetry: false,
   ssr: false,
   modules: ["@nuxtjs/tailwindcss", "@nuxt/fonts"],
-
+  runtimeConfig: {
+    public: {
+      SERVER_URL: ''
+    }
+  }
 });
