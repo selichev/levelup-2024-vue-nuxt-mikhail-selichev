@@ -1,3 +1,4 @@
 export default defineAppConfig ({
-    title: 'Products'
+    title: 'Products',
+    name: 'Products Market',
 })
