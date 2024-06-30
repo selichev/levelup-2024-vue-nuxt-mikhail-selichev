@@ -1,4 +1,8 @@
 export default defineEventHandler((event) => {
-    const id = getRouterParam(event, 'id')
-    return `Hello, ${id}!`
+    const query = getQuery(event);
+    return $fetch(`https://dummyjson.com/products/`)
+        .then((result) => {
+            console.log('> server -> api/product: ', result);
+            return result;
+        });
 })
