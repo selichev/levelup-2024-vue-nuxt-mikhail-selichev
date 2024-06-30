@@ -29,7 +29,7 @@ const useCard = (): ICard => {
         },
         restore(products: Products): any {
             const rawProducts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CARD) || '{}') as ProductsStoredType;
-            console.log('> useCard -> restore: products = ', { products, rawProducts });
+            console.log('> useCard -> restore: product = ', { products, rawProducts });
             Object.keys(rawProducts).forEach((key) => {
                 const id = parseInt(key);
                 const amount = rawProducts[key] as number;
@@ -46,7 +46,7 @@ const useCard = (): ICard => {
         // retrieve(limit: number = 10, immediate: boolean = true): any {
         //     const config = useRuntimeConfig();
         //     console.log('> config.public.SERVER_URL -> ', config.public)
-        //     const url = `${config.public.SERVER_URL}/products?limit=${limit}`;
+        //     const url = `${config.public.SERVER_URL}/product?limit=${limit}`;
         //     return useFetch(url, { immediate })
         //         .then((result) => {
         //             console.log('> useCard -> retrieveL result =', result.data.value);
