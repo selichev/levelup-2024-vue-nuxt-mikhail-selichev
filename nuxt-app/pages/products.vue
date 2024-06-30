@@ -41,17 +41,18 @@ const onProductRemoveClick =(event: MouseEvent, btn = event.currentTarget as HTM
           <div class="flex flex-row justify-between items-center">
             <button class="btn btn-neutral" @click="navigateTo(`/product/${product.id}`)">Details</button>
             <div class="card-actions">
-              <button :disabled="!product.amount"
-                      :data-id="product.id - 1"
-                      class="btn btn-sm btn-outline btn-error"
-                      @click="onProductRemoveClick"
-              >
-                -
-              </button>
-              <div>
-                {{ product.amount || ''}}
+              <div :data-index="index" class="flex flex-row space-x-2">
+                <button :disabled="!product.amount"
+                        class="btn btn-sm btn-error"
+                        @click="onProductRemoveClick"
+                >
+                  -
+                </button>
+                <div>
+                  {{ product.amount || ''}}
+                </div>
+                <button class="btn btn-sm btn-primary" @click="onProductAddClick">+</button>
               </div>
-              <button class="btn btn-sm btn-primary" :data-id="product.id - 1" @click="onProductAddClick">+</button>
             </div>
           </div>
         </div>

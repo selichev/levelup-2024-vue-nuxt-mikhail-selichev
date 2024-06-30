@@ -26,6 +26,13 @@ const onProductRemoveClick =(event: MouseEvent, btn = event.currentTarget as HTM
 };
 
 const filteredList = computed(() => list.value.filter(product => product.amount > 0));
+
+const totalOrderPrice = computed(() => {
+  return filteredList.value.reduce((total, product) => {
+    return total + product.price * product.amount;
+  }, 0).toFixed(2);
+});
+
 </script>
 <template>
   <div class="flex flex-col
@@ -56,7 +63,7 @@ const filteredList = computed(() => list.value.filter(product => product.amount 
                 <div :data-index="index" class="flex flex-row space-x-2 items-center">
                   <div class="border p-1">
                     <span>Final price:</span>
-                    <div class="badge badge-lg font-bold">{{ Math.round(product.price * product.amount) }}</div>
+                    <div class="badge badge-lg font-bold">{{ parseFloat(product.price * product.amount).toFixed(2) }}</div>
                   </div>
                   <button :disabled="!product.amount"
                           :data-id="product.id - 1"
@@ -75,6 +82,11 @@ const filteredList = computed(() => list.value.filter(product => product.amount 
           </div>
         </div>
       </div>
+    </div>
+    <div class="flex flex-raw justify-end items-center space-x-2 border w-full h-full p-2">
+      <span class="text-lg">Order price:</span>
+      <span class="text-lg font-bold">{{ totalOrderPrice }}</span>
+      <button class="btn btn-primary">Purchase order</button>
     </div>
   </div>
 </template>
