@@ -43,16 +43,6 @@ const useCard = (): ICard => {
                 }
             })
         },
-        // retrieve(limit: number = 10, immediate: boolean = true): any {
-        //     const config = useRuntimeConfig();
-        //     console.log('> config.public.SERVER_URL -> ', config.public)
-        //     const url = `${config.public.SERVER_URL}/product?limit=${limit}`;
-        //     return useFetch(url, { immediate })
-        //         .then((result) => {
-        //             console.log('> useCard -> retrieveL result =', result.data.value);
-        //             data.value = result.data.value as any;
-        //         });
-        // }
     }
 }
 
