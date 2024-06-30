@@ -3,15 +3,21 @@ import type { ComputedRef } from "vue";
 export type Products = IProductVO[];
 
 export interface IProducts {
-    retrieve: (limit: number, immediate: boolean) => Products,
+    setup: (value: any) => void,
+    retrieve: (limit: number, immediate: boolean) => any,
     readonly list: ComputedRef<Products>,
     readonly total: ComputedRef<number>,
 }
 
 export interface ICard {
+    readonly restore: (products: Products) => void,
     readonly add: (product: IProductVO) => void,
     readonly remove: (product: IProductVO) => void,
     readonly amount: ComputedRef<number>,
+}
+
+export interface IProductCountedVO extends IProductVO {
+    amount?: number
 }
 
 export interface IProductVO {

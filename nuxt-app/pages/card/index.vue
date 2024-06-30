@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BackButton from "~/components/buttons/NavigateBack.vue";
+
 const router = useRouter();
 const route = router.currentRoute;
 const onBackLinkClick = () => {
@@ -6,5 +8,5 @@ const onBackLinkClick = () => {
 }
 </script>
 <template>
-  <a @click.prevent="onBackLinkClick" class="underline">Back</a>
+  <div>{{ route.name }}</div>
 </template>

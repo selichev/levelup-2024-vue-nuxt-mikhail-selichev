@@ -2,15 +2,23 @@
 import type { IProductVO } from "~/interfaces";
 
 const { list } = useProducts();
-const onProductAddClick = (event: MouseEvent) => {
-  const target = event.currentTarget as HTMLButtonElement;
-  const parent = target.parentElement;
+const card = useCard();
+
+const getProductFromClickedButton = (btn: HTMLButtonElement): IProductVO => {
+  const parent = btn.parentElement;
   const productIndex = parseInt(parent!.dataset.index as string);
-  const productVO: IProductVO = list.value[productIndex];
-  console.log('>Products -> onProductAddClick: productIndex= ', productVO);
+  return list.value[productIndex];
 }
-const onProductRemoveClick =() => {
-  console.log('> Products -> onProductRemoveClick');
+
+const onProductAddClick = (event: MouseEvent, btn = event.currentTarget as HTMLButtonElement) => {
+  const productVO = getProductFromClickedButton(btn);
+  console.log('>Products -> onProductAddClick: productIndex= ', productVO);
+  card.add(productVO);
+}
+const onProductRemoveClick =(event: MouseEvent, btn = event.currentTarget as HTMLButtonElement) => {
+  const productVO = getProductFromClickedButton(btn);
+  console.log('>Products -> onProductRemoveClick: productIndex= ', productVO);
+  card.remove(productVO);
 }
 </script>
 <template>
@@ -27,9 +35,19 @@ const onProductRemoveClick =() => {
         <div class="card-body">
           <h2 class="card-title">{{ product.title }}</h2>
           <p>{{ product.description }}</p>
-          <div class="card-actions justify-end" :data-index="index">
-            <button class="btn btn-sm btn-primary" @click="onProductAddClick">Add</button>
-            <button class="btn btn-sm btn-outline btn-error" @click="onProductRemoveClick">Remove</button>
+          <div class="card-actions justify-between">
+            <div>
+              {{ product.amount || ''}}
+            </div>
+            <div :data-index="index" class="flex flex-row space-x-2">
+              <button class="btn btn-sm btn-primary" @click="onProductAddClick">+</button>
+              <button :disabled="!product.amount"
+                      class="btn btn-sm btn-outline btn-error"
+                      @click="onProductRemoveClick"
+              >
+                -
+              </button>
+            </div>
           </div>
         </div>
       </div>
