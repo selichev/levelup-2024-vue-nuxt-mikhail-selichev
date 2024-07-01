@@ -53,7 +53,7 @@ const onProductRemoveClick =(event: MouseEvent, btn = event.currentTarget as HTM
                 <span>Product price:</span>
                 <div class="badge badge-lg">{{ product.price }}</div>
               </div>
-              <div v-if="parseFloat(product.price * product.amount).toFixed(2) > 0" class="flex flex-row space-x-2">
+              <div v-if="parseFloat((product.price * product.amount)).toFixed(2) > 0" class="flex flex-row space-x-2">
                 <span>Final price:</span>
                 <div class="badge badge-lg font-bold">{{ parseFloat(product.price * product.amount).toFixed(2) }}</div>
               </div>

@@ -2,6 +2,8 @@
 import Header from "~/components/Header.vue";
 import NavigateBack from "~/components/buttons/NavigateBack.vue";
 import Routes from "~/constants/Routes";
+import NavigateHome from "~/components/buttons/NavigateHome.vue";
+import NavigateCard from "~/components/buttons/NavigateCard.vue";
 
 const app = useAppConfig();
 const router = useRouter();
@@ -15,6 +17,10 @@ const canRenderButtonNavigateBack = computed(() => route.value.path !== '/');
     <div class="container mx-auto flex flex-col">
       <Header :title="app.name">
         <template #right>
+          <div class="flex flex-row space-x-2">
+            <ButtonsNavigateHome />
+            <ButtonsNavigateCard />
+          </div>
           <span class="text-base">
             <NuxtLink :to="Routes.CARD">Card</NuxtLink> Items: {{ card.amount }}
           </span>
