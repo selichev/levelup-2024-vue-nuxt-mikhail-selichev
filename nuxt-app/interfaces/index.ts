@@ -43,6 +43,7 @@ export interface IProductVO {
     meta: IMetaVO
     images: string[]
     thumbnail: string
+    amount?: number
 }
 
 export interface IDimensionsVO {
