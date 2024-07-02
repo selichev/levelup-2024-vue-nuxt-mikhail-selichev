@@ -37,47 +37,55 @@ const onProductRemoveClick =(event: MouseEvent, btn = event.currentTarget as HTM
 
 </script>
 <template>
-  <div v-for="(product, index) in selectedProduct" class="card card-compact bg-base-100 w-auto shadow-xl">
-    <div class="flex flex-row">
-      <figure>
-        <img
-            :src="product.thumbnail"
-            alt="Shoes" />
-      </figure>
-      <div class="card-body">
-        <h2 class="card-title">{{ product.title }}</h2>
-        <p>{{ product.description }}</p>
-          <div :data-index="index" class="card-actions justify-between items-center">
-            <div class="flex flex-row space-x-4">
+  <div v-if="selectedProduct && selectedProduct.length > 0">
+    <div v-for="(product, index) in selectedProduct" class="card card-compact bg-base-100 w-auto shadow-xl">
+      <div class="flex flex-row">
+        <figure>
+          <img
+              :src="product.thumbnail"
+              alt="Shoes" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">{{ product.title }}</h2>
+          <p>{{ product.description }}</p>
+            <div :data-index="index" class="card-actions justify-between items-center">
+              <div class="flex flex-row space-x-4">
+                <div class="flex flex-row space-x-2">
+                  <span>Product price:</span>
+                  <div class="badge badge-lg">{{ product.price }}</div>
+                </div>
+                <div v-if="parseFloat((product.price * product.amount)).toFixed(2) > 0" class="flex flex-row space-x-2">
+                  <span>Final price:</span>
+                  <div class="badge badge-lg font-bold">{{ parseFloat(product.price * product.amount).toFixed(2) }}</div>
+                </div>
+              </div>
               <div class="flex flex-row space-x-2">
-                <span>Product price:</span>
-                <div class="badge badge-lg">{{ product.price }}</div>
-              </div>
-              <div v-if="parseFloat((product.price * product.amount)).toFixed(2) > 0" class="flex flex-row space-x-2">
-                <span>Final price:</span>
-                <div class="badge badge-lg font-bold">{{ parseFloat(product.price * product.amount).toFixed(2) }}</div>
+                <button :disabled="!product.amount"
+                        :data-id="product.id - 1"
+                        class="btn btn-sm btn-outline btn-error"
+                        @click="onProductRemoveClick"
+                >
+                  -
+                </button>
+                <div>
+                  {{ product.amount || ''}}
+                </div>
+                <button class="btn btn-sm btn-primary"
+                        :data-id="product.id - 1"
+                        @click="onProductAddClick"
+                >
+                  +
+                </button>
               </div>
             </div>
-            <div class="flex flex-row space-x-2">
-              <button :disabled="!product.amount"
-                      :data-id="product.id - 1"
-                      class="btn btn-sm btn-outline btn-error"
-                      @click="onProductRemoveClick"
-              >
-                -
-              </button>
-              <div>
-                {{ product.amount || ''}}
-              </div>
-              <button class="btn btn-sm btn-primary"
-                      :data-id="product.id - 1"
-                      @click="onProductAddClick"
-              >
-                +
-              </button>
-            </div>
-          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <div v-else>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Ошибка: </strong>
+      <span class="block sm:inline">Продукт не найден :( Пожалуйста, попробуйте позже.</span>
     </div>
   </div>
 </template>
