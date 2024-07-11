@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@nuxt/fonts"],
   runtimeConfig: {
     public: {
-      SERVER_URL: process.env.SERVER_URL || 'http://localhost:3000'
+      SERVER_URL: process.env.SERVER_URL || 'https://dummyjson.com'
     }
   }
 });
