@@ -9,7 +9,7 @@ const useProducts = (): IProducts => {
         retrieve(limit: number = 10, immediate: boolean = true): any {
             const config = useRuntimeConfig();
             console.log('> > useProducts -> retrieve: config.public.SERVER_URL -> ', config.public)
-            const url = `/${config.public.SERVER_URL}/products?limit=${limit}`;
+            const url = `${config.public.SERVER_URL}/products?limit=${limit}`;
             return useFetch(url, { immediate });
         }
     }
